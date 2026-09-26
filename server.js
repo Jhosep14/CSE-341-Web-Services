@@ -24,8 +24,9 @@ const PORT = process.env.PORT || 8080;
 initDb((err) => {
     if (err) {
         console.error('Failed to connect to MongoDB:', err);
+        process.exit(1);
     } else {
-        app.listen(PORT, () => {
+        app.listen(PORT, '0.0.0.0', () => {
             console.log(`Server is running on port ${PORT}`);
         });
     }
