@@ -1,8 +1,29 @@
-var express = require('express');
-var app = express();
+process.loadEnvFile();
 
-app.use('/', require('./routes'));
+import express from 'express';
+import cors from 'cors';
+import { initDb } from './db/connect.js';
+import routes from './routes/index.js';
 
-app.listen(process.env.PORT || 3000, () => {
-    console.log('Server is running on port ' + (process.env.PORT || 3000));
+const app = express();
+
+// Middleware
+app.use(cors());
+app.use(express.json());
+//app.use(express.static('frontend'));
+
+// Connect all routes with a single line of code
+app.use('/', routes);
+
+const PORT = process.env.PORT || 8080;
+
+// Connect to MongoDB first, then start server
+initDb((err) => {
+    if (err) {
+        console.error('Failed to connect to MongoDB:', err);
+    } else {
+        app.listen(PORT, () => {
+            console.log(`Server is running on port ${PORT}`);
+        });
+    }
 });

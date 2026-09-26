@@ -1,6 +1,14 @@
-const routes = require('express').Router();
-const lesson1Controller = require('../controllers');
+import express from 'express';
+import contactsRoutes from './contacts.js';
 
-routes.get('/', lesson1Controller.awesomeFunction);
+const router = express.Router();
 
-module.exports = routes;
+// Mount contacts routes
+router.use('/contacts', contactsRoutes);
+
+// Base route test
+router.get('/', (req, res) => {
+    res.send('Contacts API is running');
+});
+
+export default router;

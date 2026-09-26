@@ -1,5 +1,0 @@
-### Localhost Test
-GET http://localhost:3000/ HTTP/1.1
-
-### Production / Render Test
-# GET https://your-service-name.onrender.com/ HTTP/1.1

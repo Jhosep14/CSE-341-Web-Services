@@ -1,0 +1,16 @@
+### Localhost: Get all contacts
+GET http://localhost:8080/contacts
+
+### Localhost: Get single contact by ID (replace with a real _id from your MongoDB)
+GET http://localhost:8080/contacts/6ab7d9f33faf00b30c49c32d
+
+
+### =========================================================
+### Production (Render): Replace with your published Render URL
+### =========================================================
+
+### Render: Get all contacts
+GET https://your-render-service-name.onrender.com/contacts
+
+### Render: Get single contact by ID
+GET https://your-render-service-name.onrender.com/contacts/6ab7d9f33faf00b30c49c32d
