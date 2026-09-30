@@ -1,6 +1,6 @@
 try {
     process.loadEnvFile();
-} catch (error) {
+} catch {
     // In production (e.g. Render), variables are provided directly by the environment
 }
 
