@@ -3,6 +3,13 @@ import { getDb } from '../db/connect.js';
 
 // GET all contacts
 export const getAllContacts = async (req, res) => {
+    /*
+        #swagger.tags = ['Contacts']
+        #swagger.responses[200] = {
+            description: 'Contacts retrieved successfully',
+            schema: [{ $ref: '#/definitions/Contact' }]
+        }
+    */
     try {
         const db = getDb();
         const contacts = await db.collection('contacts').find().toArray();
@@ -15,6 +22,23 @@ export const getAllContacts = async (req, res) => {
 
 // GET a single contact by ID (supports :id parameter or query param ?id=)
 export const getSingleContact = async (req, res) => {
+    /*
+        #swagger.tags = ['Contacts']
+        #swagger.parameters['id'] = {
+            in: 'path',
+            description: 'MongoDB ID of the contact',
+            required: true,
+            type: 'string'
+        }
+        #swagger.responses[200] = {
+            description: 'Contact found',
+            schema: { $ref: '#/definitions/Contact' }
+        }
+    */
+    /*
+    #swagger.responses[400] = { description: 'Invalid contact ID' }
+    #swagger.responses[404] = { description: 'Contact not found' }
+    */
     try {
         const id = req.params.id || req.query.id;
 
@@ -39,6 +63,17 @@ export const getSingleContact = async (req, res) => {
 
 // CREATE a new contact
 export const createContact = async (req, res) => {
+    /*
+        #swagger.tags = ['Contacts']
+        #swagger.parameters['body'] = {
+            in: 'body',
+            description: 'Contact to create',
+            required: true,
+            schema: { $ref: '#/definitions/Contact' }
+        }
+        #swagger.responses[201] = { description: 'Contact created' }
+        #swagger.responses[400] = { description: 'A required field is missing' }
+    */
     try {
         const { firstName, lastName, email, favoriteColor, birthday } = req.body;
 
@@ -72,6 +107,24 @@ export const createContact = async (req, res) => {
 
 // UPDATE a contact by ID
 export const updateContact = async (req, res) => {
+    /*
+        #swagger.tags = ['Contacts']
+        #swagger.parameters['id'] = {
+            in: 'path',
+            description: 'MongoDB ID of the contact',
+            required: true,
+            type: 'string'
+        }
+        #swagger.parameters['body'] = {
+            in: 'body',
+            description: 'Contact to update',
+            required: true,
+            schema: { $ref: '#/definitions/Contact' }
+        }
+        #swagger.responses[204] = { description: 'Contact updated' }
+        #swagger.responses[400] = { description: 'A required field is missing' }
+        #swagger.responses[404] = { description: 'Contact not found' }
+    */
     try {
         const id = req.params.id;
 
@@ -111,6 +164,18 @@ export const updateContact = async (req, res) => {
 
 // DELETE a contact by ID
 export const deleteContact = async (req, res) => {
+    /*
+        #swagger.tags = ['Contacts']
+        #swagger.parameters['id'] = {
+            in: 'path',
+            description: 'MongoDB ID of the contact',
+            required: true,
+            type: 'string'
+        }
+        #swagger.responses[200] = { description: 'Contact deleted' }
+        #swagger.responses[400] = { description: 'Invalid contact ID' }
+        #swagger.responses[404] = { description: 'Contact not found' }
+    */
     try {
         const id = req.params.id;
 
