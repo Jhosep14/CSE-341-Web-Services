@@ -16,8 +16,8 @@ const doc = {
       birthday: '1906-12-09',
     },
   },
-  host: 'localhost:8080',
-  schemes: ['http'],
+  host: 'cse-341-web-services-clqy.onrender.com',
+  schemes: ['https'],
 };
 
 const outputFile = './swagger.json';
